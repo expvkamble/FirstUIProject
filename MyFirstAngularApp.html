@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myfirstapp">
+<head>
+    <title> FormSumissionTest </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+</head>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+<div class="container">
+    <div class="navbar-header">
+    <a class="navbar-brand" 
+       href="/">FormSumissionTest
+    </a>
+    </div>
+</div>
+</nav>
+
+<div class="container main-content" ng-controller="MyFirstApp">
+<form ng-submit="onSubmit()"
+      name="theForm"
+      novalidate="novalidate">
+    <div class="form-group">
+        <label for="Hidden"></label>
+    </div>
+    
+    <div class="form-group">
+    <label for="firstname">First Name</label>
+    <input type="text" 
+           class="form-control"
+           ng-model="formModel.firstname"
+           id="firstname"
+           required = "required"
+           >
+    </div>
+    
+    <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <input type="text" 
+           class="form-control"
+           ng-model="formModel.lastname"
+           id="lastname">
+    </div>
+
+    <div class="form-group" ng-class="
+                {'has-error':!theForm.email.$valid && !theForm.$pristine,
+                'has-sucess':theForm.email.$valid &&  !theForm.$pristine,
+                }">
+    <label for="email">Email</label>
+    <input type="email" 
+           class="form-control"
+           ng-model="formModel.email"
+           id="email"
+           required = "required"
+           name="email">
+    <p class ="help-block" ng-show="theForm.email.$error.required && !theForm.$pristine"> 
+    This field is requried 
+    </p>
+    
+    <p class ="help-block" ng-show="theForm.email.$error.email && !theForm.$pristine"> 
+    Please enater email with at least an @ symbol
+    </p>
+        <pre> Field Valid? {{ theForm.email.$valid}}</pre>
+    </div>
+    
+    <div class="form-group">
+    <label for="mobile">Mobile</label>
+    <input type="number" 
+           class="form-control"
+           ng-model="formModel.number"
+           id="number">
+    </div>
+    
+    
+    <div class="form-group">
+    <label for="gender">Gender</label>
+    <select name="gender"
+            id="gender"
+            class="form-control"
+            ng-model="formModel.gender">
+        <option value="">Please select geneder</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    </div>
+    
+    
+    <div class="form-group">
+    <button class="btn btn-primary" 
+            type="submit"> Register </button>
+    </div>
+
+</form>    
+    <pre>{{ theForm | json }} </pre>
+</div>    
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src = "MyFirstAngularApp.js"></script>    
+
+</html>
